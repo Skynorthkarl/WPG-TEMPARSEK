@@ -6,40 +6,78 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 7f;
 
     private Rigidbody2D rb;
+
+    [Header("Ground Check")]
+    public Transform groundCheck;
+    public float checkRadius = 0.1f;
+    public LayerMask groundLayer;
+
     private bool isGrounded;
+
+    private Vector3 originalScale;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        originalScale = transform.localScale;
     }
 
     void Update()
     {
+        // Cek tanah
+        isGrounded = Physics2D.OverlapCircle(
+            groundCheck.position,
+            checkRadius,
+            groundLayer
+        );
+
         // Gerak kanan kiri
         float move = Input.GetAxisRaw("Horizontal");
 
-        rb.linearVelocity = new Vector2(move * speed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(
+            move * speed,
+            rb.linearVelocity.y
+        );
 
         // Lompat
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            rb.linearVelocity = new Vector2(
+                rb.linearVelocity.x,
+                0f
+            );
+
+            rb.AddForce(
+                Vector2.up * jumpForce,
+                ForceMode2D.Impulse
+            );
+        }
+
+        // Jongkok
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.localScale = new Vector3(
+                originalScale.x,
+                originalScale.y * 0.5f,
+                originalScale.z
+            );
+        }
+        else
+        {
+            transform.localScale = originalScale;
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnDrawGizmosSelected()
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
-    }
+        if (groundCheck == null)
+            return;
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = false;
-        }
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireSphere(
+            groundCheck.position,
+            checkRadius
+        );
     }
 }
