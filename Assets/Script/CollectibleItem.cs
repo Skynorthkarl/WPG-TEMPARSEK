@@ -21,8 +21,8 @@ public class CollectibleItem : MonoBehaviour
 
     void CollectItem()
     {
-        Debug.Log("Item Collected!");
-
+        GameManager.instance.AddItem();
+    
         Destroy(gameObject);
     }
 
