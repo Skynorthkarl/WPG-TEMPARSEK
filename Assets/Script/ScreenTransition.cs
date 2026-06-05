@@ -44,4 +44,37 @@ public class ScreenTransition : MonoBehaviour
             yield return null;
         }
     }
+
+    public IEnumerator OpenScreen() {
+    float timer = 0f;
+    float startHeight = Screen.height / 2f;
+    float startWidth = Screen.width / 2f;
+
+    while (timer < duration) {
+        timer += Time.deltaTime;
+        float t = timer / duration;
+
+        topPanel.sizeDelta =
+            new Vector2(
+                topPanel.sizeDelta.x,
+                Mathf.Lerp(startHeight, 0, t));
+
+        bottomPanel.sizeDelta =
+            new Vector2(
+                bottomPanel.sizeDelta.x,
+                Mathf.Lerp(startHeight, 0, t));
+
+        leftPanel.sizeDelta =
+            new Vector2(
+                Mathf.Lerp(startWidth, 0, t),
+                leftPanel.sizeDelta.y);
+
+        rightPanel.sizeDelta =
+            new Vector2(
+                Mathf.Lerp(startWidth, 0, t),
+                rightPanel.sizeDelta.y);
+
+        yield return null;
+    }
+    }
 }

@@ -3,7 +3,12 @@ using UnityEngine.Rendering.Universal;
 
 public class TorchFlicker : MonoBehaviour
 {
-    public Light2D torchLight;
+    private Light2D torchLight;
+
+    void Start()
+    {
+        torchLight = GetComponent<Light2D>();
+    }
 
     void Update()
     {

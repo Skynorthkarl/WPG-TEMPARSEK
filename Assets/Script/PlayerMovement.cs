@@ -4,26 +4,28 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f;
     public float jumpForce = 7f;
-
     private Rigidbody2D rb;
-
     [Header("Ground Check")]
     public Transform groundCheck;
     public float checkRadius = 0.1f;
     public LayerMask groundLayer;
-
     private bool isGrounded;
 
     private Vector3 originalScale;
-
+    public Transform torchLight;
+    public bool canMove = false;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         originalScale = transform.localScale;
     }
 
-    void Update()
-    {
+    void Update() {
+        if (!canMove) {
+        rb.linearVelocity = Vector2.zero;
+        return;
+    }
+
         // Cek tanah
         isGrounded = Physics2D.OverlapCircle(
             groundCheck.position,
@@ -33,6 +35,33 @@ public class PlayerMovement : MonoBehaviour
 
         // Gerak kanan kiri
         float move = Input.GetAxisRaw("Horizontal");
+            if (move > 0) {
+                transform.localScale = new Vector3(
+                Mathf.Abs(originalScale.x),
+                transform.localScale.y,
+                transform.localScale.z
+            );
+        
+            if (torchLight != null)
+            {
+                torchLight.localPosition =
+                    new Vector3(0.5f, 0.2f, 0);
+            }
+        }
+        else if (move < 0)
+        {
+            transform.localScale = new Vector3(
+                -Mathf.Abs(originalScale.x),
+                transform.localScale.y,
+                transform.localScale.z
+            );
+        
+            if (torchLight != null)
+            {
+                torchLight.localPosition =
+                    new Vector3(-0.5f, 0.2f, 0);
+            }
+        }
 
         rb.linearVelocity = new Vector2(
             move * speed,
@@ -54,18 +83,19 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Jongkok
-        if (Input.GetKey(KeyCode.S))
-        {
+        if (Input.GetKey(KeyCode.S)) {
             transform.localScale = new Vector3(
-                originalScale.x,
-                originalScale.y * 0.5f,
-                originalScale.z
-            );
-        }
-        else
-        {
-            transform.localScale = originalScale;
-        }
+            transform.localScale.x,
+            originalScale.y * 0.5f,
+            originalScale.z );
+        } else {
+            transform.localScale = new Vector3(
+            transform.localScale.x > 0 ?
+            Mathf.Abs(originalScale.x) :
+            -Mathf.Abs(originalScale.x),
+            originalScale.y,
+            originalScale.z );
+}
     }
 
     private void OnDrawGizmosSelected()
