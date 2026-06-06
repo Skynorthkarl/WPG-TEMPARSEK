@@ -80,8 +80,7 @@ public class TutorialIntro : MonoBehaviour
         }
     }
 
-    IEnumerator StartGame()
-    {
+    IEnumerator StartGame() {
         tutorialPanel.SetActive(false);
 
         yield return StartCoroutine(

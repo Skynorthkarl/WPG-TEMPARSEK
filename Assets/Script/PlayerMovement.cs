@@ -14,6 +14,12 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 originalScale;
     public Transform torchLight;
     public bool canMove = false;
+    public void SetCanMove(bool value)
+{
+    canMove = value;
+
+    Debug.Log("CanMove diubah menjadi: " + value);
+}
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -21,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Update() {
+        Debug.Log("CanMove = " + canMove);
         if (!canMove) {
         rb.linearVelocity = Vector2.zero;
         return;
