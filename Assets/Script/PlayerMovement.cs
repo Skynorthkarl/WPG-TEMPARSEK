@@ -14,12 +14,16 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 originalScale;
     public Transform torchLight;
     public bool canMove = false;
-    public void SetCanMove(bool value)
-{
-    canMove = value;
-
-    Debug.Log("CanMove diubah menjadi: " + value);
-}
+    
+    public void SetCanMove(bool value) {
+        canMove = value;
+        if (rb == null)
+        rb = GetComponent<Rigidbody2D>();
+        
+        if (!value) {
+        rb.linearVelocity = Vector2.zero;
+        }
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -27,10 +31,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Update() {
-        Debug.Log("CanMove = " + canMove);
         if (!canMove) {
-        rb.linearVelocity = Vector2.zero;
-        return;
+            rb.linearVelocity = Vector2.zero;
+            return;
     }
 
         // Cek tanah

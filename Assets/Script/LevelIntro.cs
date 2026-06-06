@@ -25,34 +25,31 @@ public class LevelIntro : MonoBehaviour
 
     IEnumerator Start()
     {
-        // Kunci player
-        player.canMove = false;
-        Debug.Log("LOCK PLAYER");
+        // Lock player
+        player.SetCanMove(false);
 
-        // Matikan camera follow
-        Debug.Log("UNLOCK PLAYER");
+        // Stop camera follow
         cameraFollow.canFollow = false;
 
-        // Pindah kamera ke titik intro
-        cam.transform.position =
-            new Vector3(
-                introPoint.position.x,
-                introPoint.position.y,
-                -10f
-            );
+        // Kamera ke posisi intro
+        cam.transform.position = new Vector3(
+            introPoint.position.x,
+            introPoint.position.y,
+            -10f
+        );
 
         // Zoom jauh
         cam.orthographicSize = startSize;
 
-        // Tunggu layar hitam sebentar
+        // Tunggu layar hitam
         yield return new WaitForSeconds(openDelay);
 
-        // Animasi buka layar
+        // Buka layar
         yield return StartCoroutine(
             transition.OpenScreen()
         );
 
-        // Diam dulu menampilkan ruangan
+        // Tampilkan ruangan
         yield return new WaitForSeconds(roomViewDelay);
 
         // Zoom perlahan
@@ -62,26 +59,23 @@ public class LevelIntro : MonoBehaviour
         {
             timer += Time.deltaTime;
 
-            cam.orthographicSize =
-                Mathf.Lerp(
-                    startSize,
-                    endSize,
-                    timer / zoomDuration
-                );
+            cam.orthographicSize = Mathf.Lerp(
+                startSize,
+                endSize,
+                timer / zoomDuration
+            );
 
             yield return null;
         }
 
-        // Geser kamera ke player
-        Vector3 startPos =
-            cam.transform.position;
+        // Geser ke player
+        Vector3 startPos = cam.transform.position;
 
-        Vector3 targetPos =
-            new Vector3(
-                playerTarget.position.x,
-                playerTarget.position.y,
-                -10f
-            );
+        Vector3 targetPos = new Vector3(
+            playerTarget.position.x,
+            playerTarget.position.y,
+            -10f
+        );
 
         timer = 0f;
 
@@ -89,20 +83,23 @@ public class LevelIntro : MonoBehaviour
         {
             timer += Time.deltaTime;
 
-            cam.transform.position =
-                Vector3.Lerp(
-                    startPos,
-                    targetPos,
-                    timer / moveDuration
-                );
+            cam.transform.position = Vector3.Lerp(
+                startPos,
+                targetPos,
+                timer / moveDuration
+            );
 
             yield return null;
         }
 
-        // Aktifkan camera follow
+        yield return new WaitForSeconds(0.5f);
+
+        // Aktifkan follow kamera
         cameraFollow.canFollow = true;
 
-        // Baru player bisa bergerak
-        player.canMove = true;
+        // Unlock player
+        player.SetCanMove(true);
+
+        Debug.Log("INTRO SELESAI");
     }
 }
