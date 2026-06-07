@@ -1,0 +1,191 @@
+fileFormatVersion: 2
+guid: ffbba5a286270c5469afdf20b2e2a936
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 504792844473917277
+    second: Jumsker1_0
+  - first:
+      213: -8184050037127073719
+    second: Jumsker1_1
+  - first:
+      213: 2487569803975710313
+    second: Jumsker1_2
+  - first:
+      213: -356823579880919498
+    second: Jumsker1_3
+  - first:
+      213: -5402756245712729725
+    second: Jumsker1_4
+  - first:
+      213: 3861544120413011425
+    second: Jumsker1_5
+  - first:
+      213: -6502981306781586018
+    second: Jumsker1_6
+  - first:
+      213: 3998583997355012045
+    second: Jumsker1_7
+  - first:
+      213: 6147044674024591394
+    second: Jumsker1_8
+  - first:
+      213: 7376075063447212664
+    second: Jumsker1_9
+  - first:
+      213: -1415196464038696613
+    second: Jumsker1_10
+  - first:
+      213: -2190875536520032766
+    second: Jumsker1_11
+  - first:
+      213: 4754764747752155234
+    second: Jumsker1_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Jumsker1_1
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 13
+        width: 832
+        height: 1004
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 940b4092ad96c6e80800000000000000
+      internalID: -8184050037127073719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: fb0d57ffa6b7b024582ad7fca53f2bef
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Jumsker1_0: 504792844473917277
+      Jumsker1_1: -8184050037127073719
+      Jumsker1_10: -1415196464038696613
+      Jumsker1_11: -2190875536520032766
+      Jumsker1_12: 4754764747752155234
+      Jumsker1_2: 2487569803975710313
+      Jumsker1_3: -356823579880919498
+      Jumsker1_4: -5402756245712729725
+      Jumsker1_5: 3861544120413011425
+      Jumsker1_6: -6502981306781586018
+      Jumsker1_7: 3998583997355012045
+      Jumsker1_8: 6147044674024591394
+      Jumsker1_9: 7376075063447212664
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

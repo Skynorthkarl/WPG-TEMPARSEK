@@ -51,10 +51,10 @@ public class TutorialIntro : MonoBehaviour
             titleText.text = "MISI";
 
             contentText.text =
-                "Kumpulkan seluruh item\n" +
+                "Kumpulkan seluruh kunci\n" +
                 "yang tersebar di dalam rumah.\n\n" +
                 "Pintu keluar akan terbuka\n" +
-                "setelah semua item ditemukan.";
+                "setelah semua kunci ditemukan.";
 
             pageText.text = "2 / 3";
         }
@@ -63,7 +63,7 @@ public class TutorialIntro : MonoBehaviour
             titleText.text = "PERINGATAN";
 
             contentText.text =
-                "Tidak semua yang kau temukan\n" +
+                "Tidak semua kunci yang kau temukan\n" +
                 "akan membantumu.\n\n" +
                 "Hindari bahaya dan\n" +
                 "tetap waspada.";

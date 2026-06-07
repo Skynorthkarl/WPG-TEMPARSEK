@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     void UpdateUI()
     {
-        itemText.text = "Item Terkumpul: \n" + itemCount + "/" + totalItems;
+        itemText.text = "Kunci Terkumpul: \n" + itemCount + "/" + totalItems;
     }
 
     void OpenDoor()

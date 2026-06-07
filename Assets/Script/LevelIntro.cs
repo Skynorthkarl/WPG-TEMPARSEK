@@ -18,10 +18,10 @@ public class LevelIntro : MonoBehaviour
     public float endSize = 5f;
 
     [Header("Timing")]
-    public float openDelay = 1f;
-    public float roomViewDelay = 2f;
-    public float zoomDuration = 2f;
-    public float moveDuration = 2f;
+    public float openDelay = 0f;
+    public float roomViewDelay = 1f;
+    public float zoomDuration = 1.5f;
+    public float moveDuration = 1f;
 
     IEnumerator Start()
     {
