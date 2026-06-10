@@ -11,11 +11,11 @@ public class PlayerMovement : MonoBehaviour
     public float checkRadius = 0.1f;
     public LayerMask groundLayer;
     private bool isGrounded;
-
     private Vector3 originalScale;
     private bool facingRight = true; // ← tambah flag arah hadap
     public Transform torchLight;
     public bool canMove = false;
+    public AudioSource footstepAudio;
 
     public void SetCanMove(bool value)
     {
@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         originalScale = transform.localScale;
+        footstepAudio.Stop();
     }
 
     void Update()
@@ -51,6 +52,14 @@ public class PlayerMovement : MonoBehaviour
 
         // Gerak kanan kiri
         float move = Input.GetAxisRaw("Horizontal");
+        if(move != 0 && isGrounded) {
+            if(!footstepAudio.isPlaying) {
+                footstepAudio.Play();
+            }
+        }
+        else {
+            footstepAudio.Stop();
+        }
         anim.SetBool("isWalking", move != 0);
 
         if (move > 0 && !facingRight)

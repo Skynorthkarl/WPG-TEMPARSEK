@@ -4,16 +4,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
     public int itemCount = 0;
     public int totalItems = 5;
-
     public TMP_Text itemText;
-
     [Header("Door")]
     public GameObject doorClosed;
     public GameObject doorOpen;
-
+    public AudioSource doorAudio;
     private void Awake()
     {
         instance = this;
@@ -49,7 +46,7 @@ public class GameManager : MonoBehaviour
     {
         doorClosed.SetActive(false);
         doorOpen.SetActive(true);
-    
+        doorAudio.Play();
         Debug.Log("Door Opened!");
     }
 }

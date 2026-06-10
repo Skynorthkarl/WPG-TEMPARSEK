@@ -3,8 +3,9 @@ using UnityEngine;
 public class CollectibleItem : MonoBehaviour
 {
     private bool playerNearby = false;
-
     public GameObject pressEText;
+    public AudioSource audioSource;
+    public AudioClip collectSound;
 
     void Start()
     {
@@ -22,7 +23,10 @@ public class CollectibleItem : MonoBehaviour
     void CollectItem()
     {
         GameManager.instance.AddItem();
-    
+        AudioSource.PlayClipAtPoint(
+        collectSound,
+        transform.position
+    );
         Destroy(gameObject);
     }
 

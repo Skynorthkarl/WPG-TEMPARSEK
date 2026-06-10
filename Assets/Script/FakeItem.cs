@@ -5,14 +5,12 @@ public class FakeItem : MonoBehaviour
 {
     private bool playerNearby = false;
     private bool used = false;
-
     public GameObject pressEText;
-
     public GameObject jumpScareImage;
     public GameObject scaryText;
-
     public LightManager lightManager;
     public PlayerMovement player;
+    public AudioSource jumpscareAudio;
 
     void Start() {
         pressEText.SetActive(false);
@@ -31,6 +29,7 @@ public class FakeItem : MonoBehaviour
     {
         pressEText.SetActive(false);
         player.SetCanMove(false);
+        jumpscareAudio.Play();
         jumpScareImage.SetActive(true);
         yield return new WaitForSeconds(0.7f);
         jumpScareImage.SetActive(false);

@@ -7,7 +7,6 @@ public class ExitDoor : MonoBehaviour
     public Transform enterPoint;
     public GameObject enterText;
     public ScreenTransition transition;
-
     public string nextScene;
     private bool playerNearby;
     private GameObject player;
