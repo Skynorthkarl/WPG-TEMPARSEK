@@ -686,7 +686,7 @@ MonoBehaviour:
   speed: 5
   jumpForce: 12
   groundCheck: {fileID: 803359486}
-  checkRadius: 0.1
+  checkRadius: 0.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -1694,7 +1694,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
