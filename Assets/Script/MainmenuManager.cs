@@ -39,19 +39,25 @@ public class MainMenuManager : MonoBehaviour
 
         ShowMainMenu();
 
-        // Mengatur agar slider mendengarkan fungsi SetVolume saat digeser
+        // ================= BARIS PENGATUR VOLUME YANG DIUBAH =================
         if (volumeSlider != null)
         {
-            volumeSlider.minValue = 0.0001f; // Agar tidak terjadi log(0) yang bikin eror
+            volumeSlider.minValue = 0.0001f; 
             volumeSlider.maxValue = 1f;
-            volumeSlider.value = PlayerPrefs.GetFloat("VolumeSimpanan", 0.75f); // Ambil data volume terakhir
             
-            // Set volume awal
-            SetVolume(volumeSlider.value);
+            // 1. Ubah default 0.75f menjadi 1f agar suara langsung kencang di awal
+            float defaultVolume = 1f; 
+            float savedVolume = PlayerPrefs.GetFloat("VolumeSimpanan", defaultVolume);
+            
+            volumeSlider.value = savedVolume;
 
-            // Hubungkan fungsi geser slider ke kodingan otomatis
+            // 2. Langsung tembak volume ke Audio Mixer tanpa nunggu slider digeser
+            SetVolume(savedVolume);
+
+            // 3. Hubungkan fungsi geser slider
             volumeSlider.onValueChanged.AddListener(SetVolume);
         }
+        // =====================================================================
 
         if (menuCanvasGroup != null)
         {
@@ -63,13 +69,16 @@ public class MainMenuManager : MonoBehaviour
     // Fungsi khusus untuk mengubah volume berdasarkan nilai Slider (0 sampai 1)
     public void SetVolume(float nilaiSlider)
     {
+        if (audioMixer == null) return;
+
         // Mengubah nilai linear slider (0-1) menjadi desibel matematika (-80dB sampai 0dB)
+        // Nilai 1 akan menjadi 0dB (suara asli/kencang)
         float desibel = Mathf.Log10(nilaiSlider) * 20;
         
-        // "NamaVolume" harus sama persis dengan nama di Exposed Parameters Audio Mixer tadi
+        // Pastikan "NamaVolume" sudah di-Exposed di Audio Mixer kamu
         audioMixer.SetFloat("NamaVolume", desibel);
 
-        // Simpan preferensi volume pemain agar pas game dibuka lagi warnanya gak reset
+        // Simpan preferensi volume pemain
         PlayerPrefs.SetFloat("VolumeSimpanan", nilaiSlider);
     }
 
