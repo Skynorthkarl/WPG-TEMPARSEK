@@ -4,102 +4,89 @@ using System.Collections;
 public class LevelIntro : MonoBehaviour
 {
     public Camera cam;
-
     public CameraFollow cameraFollow;
     public PlayerMovement player;
-
     public Transform introPoint;
     public Transform playerTarget;
-
     public ScreenTransition transition;
 
-    [Header("Zoom")]
+    [Header("Tutorial Script Reference")]
+    public TutorialIntro tutorialIntro;
+
+    [Header("Audio")]
+    public AudioSource bgm;
+    public AudioSource torchAudio;
+
+    [Header("Zoom Settings")]
     public float startSize = 15f;
     public float endSize = 5f;
 
     [Header("Timing")]
-    public float openDelay = 0f;
     public float roomViewDelay = 1f;
     public float zoomDuration = 1.5f;
     public float moveDuration = 1f;
 
-    IEnumerator Start()
+    void Start()
     {
-        // Lock player
-        player.SetCanMove(false);
+        StartCoroutine(MainFlowSequence());
+    }
 
-        // Stop camera follow
-        cameraFollow.canFollow = false;
+    IEnumerator MainFlowSequence()
+    {
+        // 1. Kunci pergerakan player dan kamera di awal
+        if (player != null) player.SetCanMove(false);
+        if (cameraFollow != null) cameraFollow.canFollow = false;
 
-        // Kamera ke posisi intro
-        cam.transform.position = new Vector3(
-            introPoint.position.x,
-            introPoint.position.y,
-            -10f
-        );
+        // Set posisi kamera awal ke titik intro
+        if (cam != null && introPoint != null)
+        {
+            cam.transform.position = new Vector3(introPoint.position.x, introPoint.position.y, -10f);
+            cam.orthographicSize = startSize;
+        }
 
-        // Zoom jauh
-        cam.orthographicSize = startSize;
+        // 2. Jalankan Teks Tutorial Terlebih Dahulu dan tunggu sampai SELESAI (Pemain pencet Enter di halaman terakhir)
+        if (tutorialIntro != null)
+        {
+            yield return StartCoroutine(tutorialIntro.StartTutorialSequence());
+        }
 
-        // Tunggu layar hitam
-        yield return new WaitForSeconds(openDelay);
+        // 3. Setelah teks selesai, baru buka Layar Transisi Hitamnya (Fade In Level)
+        if (transition != null)
+        {
+            Debug.Log("OPEN SCREEN - LEVEL INTRO DIMULAI");
+            yield return StartCoroutine(transition.OpenScreen());
+        }
 
-        // Buka layar
-        yield return StartCoroutine(
-            transition.OpenScreen()
-        );
-
-        // Tampilkan ruangan
         yield return new WaitForSeconds(roomViewDelay);
 
-        // Zoom perlahan
+        // 4. Efek Kamera Zoom Out ke Zoom In
         float timer = 0f;
-
         while (timer < zoomDuration)
         {
             timer += Time.deltaTime;
-
-            cam.orthographicSize = Mathf.Lerp(
-                startSize,
-                endSize,
-                timer / zoomDuration
-            );
-
+            cam.orthographicSize = Mathf.Lerp(startSize, endSize, timer / zoomDuration);
             yield return null;
         }
 
-        // Geser ke player
+        // 5. Efek Kamera Geser ke Player
         Vector3 startPos = cam.transform.position;
-
-        Vector3 targetPos = new Vector3(
-            playerTarget.position.x,
-            playerTarget.position.y,
-            -10f
-        );
-
+        Vector3 targetPos = new Vector3(playerTarget.position.x, playerTarget.position.y, -10f);
         timer = 0f;
 
         while (timer < moveDuration)
         {
             timer += Time.deltaTime;
-
-            cam.transform.position = Vector3.Lerp(
-                startPos,
-                targetPos,
-                timer / moveDuration
-            );
-
+            cam.transform.position = Vector3.Lerp(startPos, targetPos, timer / moveDuration);
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.5f);
+        // 6. Selesai! Berikan kontrol ke player dan nyalakan musik
+        if (cameraFollow != null) cameraFollow.canFollow = true;
+        if (player != null) player.SetCanMove(true);
 
-        // Aktifkan follow kamera
-        cameraFollow.canFollow = true;
+        if (bgm != null) bgm.Play();
+        if (torchAudio != null) torchAudio.Play();
 
-        // Unlock player
-        player.SetCanMove(true);
-
-        Debug.Log("INTRO SELESAI");
+        Debug.Log("ALUR INTRO SELESAI - PLAYER BISA BERMAIN");
     }
 }

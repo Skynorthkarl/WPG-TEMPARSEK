@@ -1007,7 +1007,7 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.98039216, g: 0.78039217, b: 0.45882353, a: 1}
   m_Intensity: 1.5
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
@@ -1055,7 +1055,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 40cb9eb6bf0201b409f57937ff720724, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
@@ -1736,9 +1736,11 @@ MonoBehaviour:
   introPoint: {fileID: 2047295632}
   playerTarget: {fileID: 615436497}
   transition: {fileID: 1310328357}
+  tutorialIntro: {fileID: 0}
+  bgm: {fileID: 1057171062}
+  torchAudio: {fileID: 285721128}
   startSize: 7
   endSize: 5
-  openDelay: 0
   roomViewDelay: 1
   zoomDuration: 1.5
   moveDuration: 1
@@ -2542,7 +2544,6 @@ GameObject:
   - component: {fileID: 615436497}
   - component: {fileID: 615436496}
   - component: {fileID: 615436495}
-  - component: {fileID: 615436494}
   - component: {fileID: 615436493}
   - component: {fileID: 615436492}
   - component: {fileID: 615436491}
@@ -2582,7 +2583,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615436490}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 4da908ecd65d6ba4e885c70c9da9059f, type: 2}
@@ -2609,8 +2610,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 1}
+  m_Offset: {x: 0.2738162, y: -0.46116933}
+  m_Size: {x: 3.046438, y: 8.897514}
   m_Direction: 0
 --- !u!114 &615436493
 MonoBehaviour:
@@ -2634,52 +2635,6 @@ MonoBehaviour:
   torchLight: {fileID: 285721125}
   canMove: 0
   footstepAudio: {fileID: 696519798}
---- !u!61 &615436494
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 615436490}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 4da908ecd65d6ba4e885c70c9da9059f, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0.13734579, y: -0.2515366}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.95, y: 9.18}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 3.9431305, y: 8.698456}
-  m_EdgeRadius: 0
 --- !u!50 &615436495
 Rigidbody2D:
   serializedVersion: 5
@@ -2757,7 +2712,7 @@ SpriteRenderer:
   m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7475971803461812474, guid: e1fc2dec1b67ece4f90c599677f72c47, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.98039216, g: 0.78039217, b: 0.45882353, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4227,7 +4182,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 1692c7e7d1e923e41a933cc6e1a30be6, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 1

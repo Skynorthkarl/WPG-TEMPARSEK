@@ -1318,7 +1318,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 40cb9eb6bf0201b409f57937ff720724, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
@@ -5050,7 +5050,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 1692c7e7d1e923e41a933cc6e1a30be6, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
@@ -7081,9 +7081,11 @@ MonoBehaviour:
   introPoint: {fileID: 1386724778}
   playerTarget: {fileID: 242713709}
   transition: {fileID: 224666793}
+  tutorialIntro: {fileID: 0}
+  bgm: {fileID: 1471298638}
+  torchAudio: {fileID: 357933920}
   startSize: 7
   endSize: 5
-  openDelay: 0
   roomViewDelay: 1
   zoomDuration: 1.5
   moveDuration: 1

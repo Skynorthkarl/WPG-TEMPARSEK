@@ -148,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 46239871}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.74, y: -3.49, z: 0}
+  m_LocalPosition: {x: -2.74, y: -3.6531, z: 0}
   m_LocalScale: {x: 0.25941417, y: 0.1676121, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -227,17 +227,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.17563891, y: 0.019326448}
+  m_Offset: {x: 0.17563891, y: 0.0119514465}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 15.54, y: 3.88}
-    newSize: {x: 9.8832245, y: 3.8499882}
+    newSize: {x: 9.8832245, y: 5.7966805}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 7.9811234, y: 3.906289}
+  m_Size: {x: 7.9811234, y: 5.867729}
   m_EdgeRadius: 0
 --- !u!212 &46239876
 SpriteRenderer:
@@ -293,7 +293,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 9.8832245, y: 3.8499882}
+  m_Size: {x: 9.8832245, y: 5.7966805}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -4004,7 +4004,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 40cb9eb6bf0201b409f57937ff720724, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
@@ -4736,7 +4736,7 @@ Transform:
   m_GameObject: {fileID: 1363290869}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.9888, y: -3.49, z: 0}
+  m_LocalPosition: {x: 4.9888, y: -3.6584, z: 0}
   m_LocalScale: {x: 0.25941417, y: 0.1676121, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4815,17 +4815,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.17563891, y: 0.019326448}
+  m_Offset: {x: 0.17563891, y: 0.019324422}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 15.54, y: 3.88}
-    newSize: {x: 9.900453, y: 3.8499882}
+    newSize: {x: 9.900453, y: 5.860016}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 7.9811234, y: 3.906289}
+  m_Size: {x: 7.9811234, y: 5.911973}
   m_EdgeRadius: 0
 --- !u!212 &1363290874
 SpriteRenderer:
@@ -4881,7 +4881,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 9.900453, y: 3.8499882}
+  m_Size: {x: 9.900453, y: 5.860016}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -7867,7 +7867,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 1692c7e7d1e923e41a933cc6e1a30be6, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
@@ -8308,9 +8308,11 @@ MonoBehaviour:
   introPoint: {fileID: 66587827}
   playerTarget: {fileID: 442460607}
   transition: {fileID: 639508215}
+  tutorialIntro: {fileID: 0}
+  bgm: {fileID: 1982024304}
+  torchAudio: {fileID: 1205381745}
   startSize: 7
   endSize: 5
-  openDelay: 0
   roomViewDelay: 1
   zoomDuration: 1.5
   moveDuration: 1

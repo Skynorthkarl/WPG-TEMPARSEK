@@ -4,21 +4,69 @@ using System.Collections;
 
 public class TutorialIntro : MonoBehaviour
 {
-    public TMP_Text titleText;
+    [Header("UI")]
     public TMP_Text contentText;
-    public TMP_Text pageText;
-
+    public TMP_Text enterText;
     public GameObject tutorialPanel;
 
-    int page = 0;
+    [Header("Typing")]
+    public float typingSpeed = 0.03f;
 
-    void Start()
+    private Coroutine typingCoroutine;
+    private int page = 0;
+    private bool isWaitingForInput = false;
+
+    // Diganti menjadi fungsi publik yang dikontrol oleh LevelIntro
+    public IEnumerator StartTutorialSequence()
     {
+        tutorialPanel.SetActive(true);
+
+        // Reset Alpha Text ke 0
+        Color contentColor = contentText.color; contentColor.a = 0; contentText.color = contentColor;
+        Color enterColor = enterText.color; enterColor.a = 0; enterText.color = enterColor;
+
+        StartCoroutine(BlinkEnter());
+
+        // Munculkan panel teks perlahan (Fade In)
+        float timer = 0f;
+        while (timer < 1f)
+        {
+            timer += Time.deltaTime;
+            float alpha = Mathf.Lerp(0f, 1f, timer / 1f);
+
+            contentColor.a = alpha; contentText.color = contentColor;
+            enterColor.a = alpha; enterText.color = enterColor;
+            yield return null;
+        }
+
         ShowPage();
+
+        // Tunggu di sini sampai pemain menyelesaikan semua halaman teks
+        isWaitingForInput = true;
+        while (isWaitingForInput)
+        {
+            yield return null;
+        }
+
+        // Hilangkan panel teks perlahan (Fade Out)
+        timer = 0f;
+        while (timer < 0.5f)
+        {
+            timer += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, timer / 0.5f);
+
+            contentColor.a = alpha; contentText.color = contentColor;
+            enterColor.a = alpha; enterText.color = enterColor;
+            yield return null;
+        }
+
+        tutorialPanel.SetActive(false);
     }
 
     void Update()
     {
+        if (!isWaitingForInput) return;
+
         if (Input.GetKeyDown(KeyCode.Return))
         {
             if (page < 2)
@@ -28,54 +76,48 @@ public class TutorialIntro : MonoBehaviour
             }
             else
             {
-                StartCoroutine(StartGame());
+                // Halaman habis, lanjut ke tahap berikutnya di LevelIntro
+                isWaitingForInput = false;
             }
         }
     }
 
     void ShowPage()
     {
+        if (typingCoroutine != null) StopCoroutine(typingCoroutine);
+
         if (page == 0)
         {
-            titleText.text = "KONTROL";
-
-            contentText.text =
-                "A / D = Bergerak\n" +
-                "W = Lompat\n" +
-                "E = Interaksi";
-
-            pageText.text = "1 / 3";
+            contentText.text = "A / D = Bergerak\nW = Lompat\nE = Interaksi";
         }
         else if (page == 1)
         {
-            titleText.text = "MISI";
-
-            contentText.text =
-                "Kumpulkan seluruh kunci\n" +
-                "yang tersebar di dalam rumah.\n\n" +
-                "Pintu keluar akan terbuka\n" +
-                "setelah semua kunci ditemukan.";
-
-            pageText.text = "2 / 3";
+            typingCoroutine = StartCoroutine(TypeText("Kumpulkan seluruh kunci\nyang tersebar di dalam rumah.\n\nPintu keluar akan terbuka\nsetelah semua kunci ditemukan."));
         }
         else
         {
-            titleText.text = "PERINGATAN";
-
-            contentText.text =
-                "Tidak semua kunci yang kau temukan\n" +
-                "akan membantumu.\n\n" +
-                "Hindari bahaya dan\n" +
-                "tetap waspada.";
-
-            pageText.text = "3 / 3";
+            typingCoroutine = StartCoroutine(TypeText("Tidak semua kunci yang kau temukan\nakan membantumu.\n\nHindari bahaya dan\ntetap waspada."));
         }
     }
 
-    IEnumerator StartGame()
+    IEnumerator TypeText(string message)
     {
-        tutorialPanel.SetActive(false);
+        contentText.text = "";
+        foreach (char letter in message)
+        {
+            contentText.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
+        }
+    }
 
-        yield return null;
+    IEnumerator BlinkEnter()
+    {
+        while (true)
+        {
+            enterText.enabled = false;
+            yield return new WaitForSeconds(0.5f);
+            enterText.enabled = true;
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 }
